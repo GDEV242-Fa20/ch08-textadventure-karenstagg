@@ -43,30 +43,75 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
-      
+        Room frontHall, dadsMancave, sistersBedroom, myBedroom, upstairsHall, 
+             attic, outside, grandmasNursingHome, friendsApt, aptLobby,
+             downtown, church, dressStore, hairSalon, nailSalon;
+              
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
+        frontHall = new Room("in the front hall of my house");
+        dadsMancave = new Room("in dad's man cave in the basement");
+        sistersBedroom = new Room("in my sister's bedroom");
+        myBedroom = new Room("in my bedroom");
+        upstairsHall = new Room("in the upstairs hallway");
+        attic = new Room("in the attic of my house");
+        outside = new Room("outside of my house");
+        grandmasNursingHome = new Room("in my grandma's nursing home");
+        friendsApt = new Room("in my friend's apartment");
+        aptLobby = new Room("in the lobby of my friend's apartment");
+        downtown = new Room("in the downtown of my neighborhood");
+        church = new Room("in the church of where my wedding is");
+        dressStore = new Room("in the store where my wedding gown is");
+        hairSalon = new Room("in the salon where my hair is being done");
+        nailSalon = new Room("in the nail salon getting a maincure");
+      
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theater.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;  // start game outside
+        frontHall.setExit("north", upstairsHall);
+        frontHall.setExit("south", dadsMancave);
+        frontHall.setExit("east", outside);
+                
+        dadsMancave.setExit("north", frontHall);
+        
+        sistersBedroom.setExit("east", upstairsHall);
+        
+        attic.setExit("south", upstairsHall);
+        
+        upstairsHall.setExit("north", attic);
+        upstairsHall.setExit("south", frontHall);
+        upstairsHall.setExit("east", myBedroom);
+        upstairsHall.setExit("west", sistersBedroom);
+        
+        myBedroom.setExit("west", upstairsHall);
+        
+        grandmasNursingHome.setExit("south", outside);
+        
+        outside.setExit("north", grandmasNursingHome);
+        outside.setExit("south", friendsApt);
+        outside.setExit("east", church);
+        outside.setExit("west", frontHall);
+        
+        friendsApt.setExit("north", outside);
+        friendsApt.setExit("south", aptLobby);
+        
+        aptLobby.setExit("north", friendsApt);
+        aptLobby.setExit("east", downtown);
+        
+        church.setExit("south", downtown);
+        church.setExit("west", outside);
+        
+        downtown.setExit("north", church);
+        downtown.setExit("south", dressStore);
+        downtown.setExit("east", hairSalon);
+        downtown.setExit("west", aptLobby);
+        
+        dressStore.setExit("north", downtown);
+        
+        hairSalon.setExit("south", nailSalon);
+        hairSalon.setExit("west", downtown);
+        
+        nailSalon.setExit("north", hairSalon);
+        
+        // start game at front Hall of the house
+        currentRoom = frontHall;  
     }
 
     /**
