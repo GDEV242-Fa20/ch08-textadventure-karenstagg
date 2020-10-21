@@ -46,7 +46,12 @@ public class Game
         Room frontHall, dadsMancave, sistersBedroom, myBedroom, upstairsHall, 
              attic, outside, grandmasNursingHome, friendsApt, aptLobby,
              downtown, church, dressStore, hairSalon, nailSalon;
-              
+             
+        Item borrowedWineGlasses, oldCoin, borrowedNecklace, blueFlower, 
+             oldDiamondEarrings, blueHankie, oldDress, oldPin, bluePurse, 
+             borrowedWrap, newBracelet, borrowedBike, newHusband, newVail, 
+             blueGarter, newManicure;
+             
         // create the rooms
         frontHall = new Room("in the front hall of my house");
         dadsMancave = new Room("in dad's man cave in the basement");
@@ -64,6 +69,24 @@ public class Game
         hairSalon = new Room("in the salon where my hair is being done");
         nailSalon = new Room("in the nail salon getting a maincure");
       
+        // create the items
+        borrowedWineGlasses = new Item("borrowed crystal wine glasses from dad", 2);
+        oldCoin = new Item("an old European coin from my dad", 1);
+        borrowedNecklace = new Item("a borrowed pearl necklace from my sister", 2);
+        blueFlower = new Item("a blue forget-me-not from my sister's garden", 1);
+        oldDiamondEarrings = new Item("a pair of old diamond earrings from Mom", 2);
+        blueHankie = new Item("a blue hankie", 1);
+        oldDress = new Item("my mom's wedding dress", 5);
+        oldPin = new Item("an old pin from grandma's jewelry box", 2);
+        bluePurse = new Item("the little blue change purse from grandma", 1);
+        borrowedWrap = new Item("a borrowed wrap to keep warm", 1);
+        newBracelet = new Item("a wedding gift of a new pearl bracelet", 1);
+        borrowedBike = new Item("a borrowed bike to get around quickly", 2);
+        newHusband = new Item ("the prize! my new husband!", 10);
+        newVail = new Item ("new vail to wear", 1);
+        blueGarter = new Item ("a blue garter to throw later", 1); 
+        newManicure = new Item("nicely groomed hands for the occasion", 1);
+                
         // initialise room exits
         frontHall.setExit("north", upstairsHall);
         frontHall.setExit("south", dadsMancave);
@@ -112,6 +135,33 @@ public class Game
         
         // start game at front Hall of the house
         currentRoom = frontHall;  
+        
+        // initialise room items
+        dadsMancave.addItem(borrowedWineGlasses);
+        dadsMancave.addItem(oldCoin);
+        
+        sistersBedroom.addItem(borrowedNecklace);
+        sistersBedroom.addItem(blueFlower);
+        
+        myBedroom.addItem(oldDiamondEarrings);
+        myBedroom.addItem(blueHankie);
+        
+        attic.addItem(oldDress);
+        
+        grandmasNursingHome.addItem(oldPin);
+        grandmasNursingHome.addItem(bluePurse);
+        
+        friendsApt.addItem(borrowedWrap);
+        friendsApt.addItem(newBracelet);
+        
+        aptLobby.addItem(borrowedBike);
+        
+        church.addItem(newHusband);
+        
+        dressStore.addItem(newVail);
+        dressStore.addItem(blueGarter);
+        
+        nailSalon.addItem(newManicure);
     }
 
     /**

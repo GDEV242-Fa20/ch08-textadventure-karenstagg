@@ -1,5 +1,6 @@
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 
 /**
@@ -19,18 +20,22 @@ import java.util.Iterator;
 public class Room 
 {
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.
-
+    // stores exits of this room.
+    private HashMap<String, Room> exits;    
+    //stores items in this room.
+    private HashSet<Item> items;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
+     * Instantiate the collection set of exits and items.
      * @param description The room's description.
      */
     public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<>();
+        exits = new HashMap<String, Room>();
+        items = new HashSet<Item>();
     }
 
     /**
@@ -43,6 +48,15 @@ public class Room
         exits.put(direction, neighbor);
     }
 
+    /**
+     *  Add items to a room      
+     * @param item is the item to add to a room.
+     */
+    public void addItem(Item item) 
+    {
+        items.add(item);
+    }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -60,7 +74,8 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString()
+                           + "\n" + getItemsString();
     }
 
     /**
@@ -74,6 +89,22 @@ public class Room
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
             returnString += " " + exit;
+        }
+        return returnString;
+    }
+    
+    /**
+     * Return a string describing items in the room.
+     * For example "old dress", "new vail", "borrowed necklace", "blue garter"
+     * 
+     * @return a string listing of the items in the room.
+     */
+    private String getItemsString()
+    {
+        String returnString = "Items:";
+        for(Item item : items )
+        {
+            returnString += " " + item;
         }
         return returnString;
     }
