@@ -11,12 +11,21 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Karen Stagg
+ * @version October 26, 2020
  */
 
 public class Game 
 {
+    /**
+     * The main method.
+     */
+    public static void main(String args[])
+    {
+        Game game = new Game();
+        game.play();
+    }    
+    
     private Parser parser;
     private Room currentRoom;
         
