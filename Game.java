@@ -1,3 +1,4 @@
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -28,6 +29,8 @@ public class Game
     
     private Parser parser;
     private Room currentRoom;
+    //add a field for use by the back command
+    private Room previousRoom;
         
     /**
      * Create the game and initialise its internal map.
@@ -228,7 +231,11 @@ public class Game
                 
             case EAT:
                 eat();
-                break;    
+                break;   
+                
+            case BACK:
+                 Back(command);
+                 break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -246,8 +253,8 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are lost. You are alone. You are ");
+        System.out.println("wandering around.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -273,8 +280,39 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
-        else {
+        else 
+        {
+            //maintain the value of the current room by storing it in previous room
+            previousRoom = currentRoom;
             currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    /*
+     * Back takes you back to the room you were just in
+     * @param command is the command entered by the user
+     */
+    private void Back(Command command) 
+    {
+        if(command.hasSecondWord()) 
+        {
+            // if there is a second word, we don't know where to go...
+            System.out.println("Go back where?");
+            return;
+        }
+        
+        //Check to see if there is a previous room stored 
+        if(previousRoom == null) 
+        {
+            // There is no previous room to go back to 
+            System.out.println("Sorry, there is no previous room to go back to");
+            return;
+        }
+        else
+        {
+            //make the current room equal to the stored previous room value
+            currentRoom = previousRoom;
             System.out.println(currentRoom.getLongDescription());
         }
     }
