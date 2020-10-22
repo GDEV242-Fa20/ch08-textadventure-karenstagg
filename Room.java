@@ -95,16 +95,16 @@ public class Room
     
     /**
      * Return a string describing items in the room.
-     * For example "old dress", "new vail", "borrowed necklace", "blue garter"
+     * For example "old Dress", "new Vail", "borrowed Necklace", "blue Garter"
      * 
      * @return a string listing of the items in the room.
      */
     private String getItemsString()
     {
         String returnString = "Items:";
-        for(Item item : items )
+        for (Item item : items)
         {
-            returnString += " " + item;
+            returnString += " " + item.getDescription() + "   ";
         }
         return returnString;
     }

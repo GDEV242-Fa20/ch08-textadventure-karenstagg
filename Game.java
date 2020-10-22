@@ -50,7 +50,7 @@ public class Game
         Item borrowedWineGlasses, oldCoin, borrowedNecklace, blueFlower, 
              oldDiamondEarrings, blueHankie, oldDress, oldPin, bluePurse, 
              borrowedWrap, newBracelet, borrowedBike, newHusband, newVail, 
-             blueGarter, newManicure;
+             blueGarter, newManicure, smile;
              
         // create the rooms
         frontHall = new Room("in the front hall of my house");
@@ -70,22 +70,23 @@ public class Game
         nailSalon = new Room("in the nail salon getting a maincure");
       
         // create the items
-        borrowedWineGlasses = new Item("borrowed crystal wine glasses from dad", 2);
-        oldCoin = new Item("an old European coin from my dad", 1);
-        borrowedNecklace = new Item("a borrowed pearl necklace from my sister", 2);
-        blueFlower = new Item("a blue forget-me-not from my sister's garden", 1);
-        oldDiamondEarrings = new Item("a pair of old diamond earrings from Mom", 2);
+        borrowedWineGlasses = new Item("borrowed crystal wine glasses", 2);
+        oldCoin = new Item("an old European coin", 1);
+        borrowedNecklace = new Item("a borrowed pearl necklace", 2);
+        blueFlower = new Item("a blue forget-me-not from the garden", 1);
+        oldDiamondEarrings = new Item("a pair of old diamond earrings", 2);
         blueHankie = new Item("a blue hankie", 1);
         oldDress = new Item("my mom's wedding dress", 5);
         oldPin = new Item("an old pin from grandma's jewelry box", 2);
-        bluePurse = new Item("the little blue change purse from grandma", 1);
+        bluePurse = new Item("a little blue change purse", 1);
         borrowedWrap = new Item("a borrowed wrap to keep warm", 1);
         newBracelet = new Item("a wedding gift of a new pearl bracelet", 1);
         borrowedBike = new Item("a borrowed bike to get around quickly", 2);
         newHusband = new Item ("the prize! my new husband!", 10);
-        newVail = new Item ("new vail to wear", 1);
+        newVail = new Item ("a new vail to wear", 1);
         blueGarter = new Item ("a blue garter to throw later", 1); 
         newManicure = new Item("nicely groomed hands for the occasion", 1);
+        smile = new Item("a smile for this happy day!", 1);
                 
         // initialise room exits
         frontHall.setExit("north", upstairsHall);
@@ -162,6 +163,8 @@ public class Game
         dressStore.addItem(blueGarter);
         
         nailSalon.addItem(newManicure);
+        
+        frontHall.addItem(smile);
     }
 
     /**

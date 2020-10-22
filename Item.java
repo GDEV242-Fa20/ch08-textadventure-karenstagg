@@ -22,7 +22,27 @@ public class Item
     {
         this.description = description;
         this.weight = weight;
-    } 
+    }
+    
+    /**
+     * Return a description of the item
+     *
+     * @return the description of the item
+     */
+    public String getDescription()
+    {
+        return description;
+    }
+
+    /**
+     * Return the integer value of the weight of the item
+     *
+     * @return the weight of the item
+     */
+    public int weight()
+    {
+        return weight;
+    }
 }    
     
  
