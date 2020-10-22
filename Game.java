@@ -31,6 +31,7 @@ public class Game
     private Room currentRoom;
     //add a field for use by the back command
     private Room previousRoom;
+    private Player player;
         
     /**
      * Create the game and initialise its internal map.
@@ -137,9 +138,6 @@ public class Game
         
         nailSalon.setExit("north", hairSalon);
         
-        // start game at front Hall of the house
-        currentRoom = frontHall;  
-        
         // initialise room items
         dadsMancave.addItem(borrowedWineGlasses);
         dadsMancave.addItem(oldCoin);
@@ -168,8 +166,14 @@ public class Game
         nailSalon.addItem(newManicure);
         
         frontHall.addItem(smile);
-    }
-
+        
+        //Start game at frontHall of house
+        currentRoom = frontHall;
+        
+        //Add a player and set the player's current room to default of frontHall
+        player = new Player("Karen", frontHall);
+           }
+      
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -275,8 +279,11 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
-
+        //This code is when there is not a player
+        //Room nextRoom = currentRoom.getExit(direction);
+        //Add new code to handle a player
+        Room nextRoom = player.getCurrentRoom().getExit(direction);
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -285,7 +292,11 @@ public class Game
             //maintain the value of the current room by storing it in previous room
             previousRoom = currentRoom;
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            //This code is when there is not a player.
+            //System.out.println(currentRoom.getLongDescription());
+            //Add new code to handle a player
+            player.setCurrentRoom(nextRoom);
+            System.out.println(player.getCurrentRoom().getLongDescription());
         }
     }
     
