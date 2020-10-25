@@ -19,6 +19,8 @@ public class Player
     private int pointsCollected = 0;
     //keep a new collection set for the collected items of the player
     private HashSet<Item> collection;
+    //a room object for the beamed location 
+    private Room beamerChargingLoc;
     /**
      * Constructor for objects of class Player
      * 
@@ -61,6 +63,29 @@ public class Player
     public void setCurrentRoom(Room nextRoom)
     {
        currentRoom = nextRoom; 
+    }
+    
+    /**
+     * Charges the beamer to enable firing it and therefore relocating back to the 
+     * room in which it was charged.
+     *
+     * @return true if the beamer has been charged, else return false.
+     */
+    public boolean chargeBeamer()
+    {
+       boolean charged = true;
+       beamerChargingLoc = currentRoom; 
+       return charged;
+    }
+    
+     /**
+     * fires the beamer if it it charged and places the player back in the
+     * room where it was initially charged. 
+     *      
+     */
+    public void fireBeamer()
+    {
+       currentRoom = beamerChargingLoc;
     }
     
     /**

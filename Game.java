@@ -19,6 +19,11 @@
  *  She will need to collect a required number of points withn a maximum number 
  *  of unique moves (accumulated only from the goRoom() method),
  *  in order to "win" the game and get married.
+ *  
+ *  The game also supplies the player with a beamer that, when charged in a room, 
+ *  can then be fired and will return the player back to the room that the beamer was
+ *  charged in.  Once a charged beamer is fired, it will need to be re-charged before 
+ *  being able to be fired again.
  * 
  * @author  Karen Stagg
  * @version October 26, 2020
@@ -44,6 +49,7 @@ public class Game
     private int maxMoves = 10;
     //set the amount of points needed to win the game
     private int winningPoints = 10;
+    private boolean beamerCharged = false;
     
     Room frontHall, dadsMancave, sistersBedroom, myBedroom, upstairsHall, 
              attic, outside, grandmasNursingHome, friendsApt, aptLobby,
@@ -152,6 +158,14 @@ public class Game
             case COLLECTED:
                  collected();
                  break;
+                 
+            case CHARGE:
+                 charge();
+                 break;
+                 
+            case FIRE:
+                 fire();
+                 break;   
                 
             case QUIT:
                  wantToQuit = quit(command);
@@ -290,6 +304,37 @@ public class Game
         System.out.println("You have eaten now and you re not hungry anymore.");
     }
 
+    /**
+     * The charge command charges a beamer for the player that the player can use 
+     * to get back to a room where the charging occurred.
+     *     
+     */
+    private void charge() 
+    {
+        beamerCharged = player.chargeBeamer();
+        System.out.println("You have charged you beamer.");
+    }
+    
+    /**
+     * The fire command fires a charged beamer and brings a player back 
+     * to the room where the charging occurred.
+     *     
+     */
+    private void fire() 
+    {
+        if (beamerCharged == true)
+        {
+            player.fireBeamer();
+            System.out.println("You have fired you beamer and now entering a new room .");
+            System.out.println(player.getCurrentRoom().getLongDescription());
+            //reset the beameer to not be charged to allow for multiple beams
+            beamerCharged = false;
+        }
+        else
+        {
+            System.out.println("Sorry, your beamer has not been charged");
+        }   
+    }
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
