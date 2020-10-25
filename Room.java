@@ -49,12 +49,21 @@ public class Room
     }
 
     /**
-     *  Add items to a room      
+     *  Puts an item to a room      
      * @param item is the item to add to a room.
      */
     public void addItem(Item item) 
     {
         items.add(item);
+    }
+    
+    /**
+     *  Remove an item from a room      
+     * @param item is the item to remove from to a room.
+     */
+    public void removeItem(Item item) 
+    {
+        items.remove(item);
     }
     
     /**
@@ -67,14 +76,15 @@ public class Room
     }
 
     /**
-     * Return a description of the room in the form:
+     * Return a description of the room, exits and items in the room in the form:
      *     You are in the kitchen.
      *     Exits: north west
+     *     Items: item name - description
      * @return A long description of this room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString()
+        return "\nYou are " + description + ".\n" + getExitString()
                            + "\n" + getItemsString();
     }
 
@@ -94,8 +104,8 @@ public class Room
     }
     
     /**
-     * Return a string describing items in the room.
-     * For example "old Dress", "new Vail", "borrowed Necklace", "blue Garter"
+     * Return a string listing and describing items in the room in the form of:
+     * item name - description
      * 
      * @return a string listing of the items in the room.
      */
@@ -104,7 +114,8 @@ public class Room
         String returnString = "Items:";
         for (Item item : items)
         {
-            returnString += " " + item.getDescription() + "   ";
+            returnString += " " + item.getName() + " - " + 
+                         item.getDescription() + "\n      ";
         }
         return returnString;
     }
@@ -119,5 +130,25 @@ public class Room
     {
         return exits.get(direction);
     }
-}
+    
+     /**
+     * Returns the item object of a collected item if found in the list of 
+     * items contained in a room, otherwise it returns null.
+     * @param itemName is the name of a collected item
+     * @return a Item object containing null or the name of the validated 
+     * collected item
+     */
+    public Item getItem(String itemName) 
+    {
+        Item foundItem = null;
+        for (Item item : items)
+        {
+            if (item.getName().equals(itemName))
+            {
+                foundItem = item;
+            }
+        }   
+        return foundItem;
+    }
+}    
 

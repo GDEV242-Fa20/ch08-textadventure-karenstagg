@@ -2,26 +2,39 @@
 /**
  * This class is a part of the "World Of Zuul" application.
  * 
- * An item is represented by a description and a weight.
+ * An item is represented by an item name, description and a weight.
  *
  * @ author Karen Stagg
  * @ version October 26, 2020
  */
 public class Item
 {
+    private String itemName;
     private String description;
     private int weight;
 
     /**
      * Constructor for objects of class Item
      * 
+     * @param itemName is a short name for the item.
      * @param description is a description of the item.
      * @param weight is the integer weight of the item,
      */
-     public Item(String description, int weight)
+     public Item(String itemName, String description, int weight)
     {
+        this.itemName = itemName;
         this.description = description;
         this.weight = weight;
+    }
+    
+    /**
+     * Return the name of the item
+     *
+     * @return the short name of the item
+     */
+    public String getName()
+    {
+        return itemName;
     }
     
     /**
@@ -39,7 +52,7 @@ public class Item
      *
      * @return the weight of the item
      */
-    public int weight()
+    public int getWeight()
     {
         return weight;
     }
