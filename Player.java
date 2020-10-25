@@ -91,7 +91,6 @@ public class Player
     /**
      * Increments the moves made by the player
      *
-     * @param nextRoom is the new current room that the player is located
      */
     public void addToMoves()
     {
