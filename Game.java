@@ -423,7 +423,9 @@ public class Game
         aptLobby.setExit("north", friendsApt);
         aptLobby.setExit("east", downtown);
         
-        church.setExit("south", downtown);
+        //Implementing a trap door on church leading back to downtown, 
+        //by removing the valid exit from that path.
+        //church.setExit("south", downtown);
         church.setExit("west", outside);
         
         downtown.setExit("north", church);
